@@ -1,0 +1,5 @@
+To test locally without CORS issues:
+
+Run from root directory: http-server
+
+https://www.ato.gov.au/business/excise-on-alcohol/lodging,-paying-and-rates---excisable-alcohol/excise-duty-rates-for-alcohol/

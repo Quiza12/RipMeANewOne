@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <title>🍺 A Bloody Rip Off 🍷</title>
+
+  <meta charset="utf-8">
+  <meta name="description" content="A tax calculator for alcohol bought in Australia.">
+  <meta name="author" content="Matthew Querzoli">
+  <meta name="keywords" content="Alcohol,Australia,Tax,Booze,Beer,Wine,Spirits,Expensive">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <!-- <link rel="icon" href="images/favicon.png"> -->
+</head>
+
+<header>
+  <h1>A Bloody Rip Off</h1>
+  <h2>D'ya know why alcohol is so bloody expensive in Australia? Tax. Forkin' tax. Find out how much of the case/bottle you buy is subject to thanks to the Australian Government.</h2>
+</header>
+
+<body>
+
+  <h3>Oright, What's the Damage?</h3>
+
+  <form id="what">
+    <h5>What did ya buy?</h5>
+    <input type="radio" id="beer" name="whatDidYaBuyGroup" value="beer" onchange="onWhatDidYaBuyChange(value)">
+    <label for="beer">Beer</label><br>
+    <input type="radio" id="spiritsOther" name="whatDidYaBuyGroup" value="spiritsOther" onchange="onWhatDidYaBuyChange(value)">
+    <label for="spiritsOther">Spirits/Other</label><br>
+  </form>
+
+  <form id="howMuch">
+    <h5>How much ya snag?</h5>
+    <div id="beer-selection">
+      <input type="radio" id="case" name="howMuchYaSnagGroup" value="case">
+      <label for="case">Case</label><br>
+      <input type="radio" id="sixPack" name="howMuchYaSnagGroup" value="sixPack">
+      <label for="sixPack">Six Pack</label><br>
+      <input type="radio" id="bottleTin" name="howMuchYaSnagGroup" value="bottleTin">
+      <label for="bottleTin">Individual bottle/tin</label><br>
+    </div>
+    <div id="spirits-other-selection">
+      <p>spirits-other-selection</p>
+    </div>
+    <input type="text" id="quantityInput" name="quantityInput" value="0" onchange="onQuantityChange(value)">
+    <label for="quantityInput">Quantity</label><br>
+  </form>
+
+  <form id="alcoholPercentage">
+    <h5>How strong's the bastard?</h5>
+      <input type="text" id="strengthInput" name="strengthInput" value="0" onchange="onAlcoholStrengthChange(value)">
+      <label for="strengthInput">%</label><br>
+  </form>
+
+  <form id="volume">
+    <h5>How much volume in a single container?</h5>
+      <input type="text" id="volumeInput" name="volumeInput" value="0" onchange="onVolumeChange(value)">
+      <label for="volumeInput">ml</label><br>
+  </form>
+
+  <form id="price">
+    <h5>How much ya cough up for it?</h5>
+    <input type="text" id="priceInput" name="priceInput" value="0">
+    <label for="priceInput">Price ($)</label><br>
+
+    <input onclick="calculate()" type="button" value="Calculate!"/>
+  </form>
+
+  <div id="result">
+    <p id="result-text"></p>
+  </div>
+
+</body>
+
+<footer></footer>
+
+<script src="scripts.js"></script>
+
+</html>
