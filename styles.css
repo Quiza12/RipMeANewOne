@@ -17,3 +17,7 @@
 #result {
   display: none;
 }
+
+#resultPrint {
+  font-weight: bold;
+}

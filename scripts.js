@@ -1,3 +1,7 @@
+/*
+  Total volume (litres) of product × (alcohol strength – 1.15%) × current excise duty rate
+*/
+
 var exciseDutyRateBeer11 = 45.07;
 var exciseDutyRateBeer12 = 9.01;
 var exciseDutyRateBeer15 = 52.49;
@@ -6,16 +10,20 @@ var exciseDutyRateBeer110 = 52.49;
 var exciseDutyRateBeer111 = 36.98;
 var exciseDutyRateBeer115 = 3.17;
 var exciseDutyRateBeer116 = 3.65;
+
+var exciseDutyRateBrandy = 83.04;
+var exciseDutyRateSpirits= 88.91;
+
 // var exciseDutyRateBeerExample = 50.70;
 
 function onWhatDidYaBuyChange(alcohol) {
   alcohol = alcohol;
   if (alcohol == "beer") {
     document.getElementById("beer-selection").style.display = 'block';
-    document.getElementById("spirits-other-selection").style.display = 'none';
+    document.getElementById("spirits-selection").style.display = 'none';
   } else {
     document.getElementById("beer-selection").style.display = 'none';
-    document.getElementById("spirits-other-selection").style.display = 'block';
+    document.getElementById("spirits-selection").style.display = 'block';
   }
   document.getElementById("howMuch").style.display = 'block';
 }
@@ -49,6 +57,8 @@ function calculate() {
 
   if (alcohol == "beer") {
     beerCalculator(type, quantity, strength, volume, price);
+  } else if (alcohol == "spirits") {
+    spiritsCalculator(type, quantity, strength, volume, price);
   }
 
   document.getElementById("result").style.display = 'block';
@@ -59,7 +69,8 @@ function beerCalculator(type, quantityString, strengthString, volumeString, pric
   var strength = Number(strengthString); // %
   var volumePerUnit = Number(volumeString); //in millilitres
   var price = Number(priceString);
-  var total;
+  var totalLitres;
+  var tax;
 
   if (type == "case") {
     totalLitres = quantity * 24 * (volumePerUnit / 1000);
@@ -69,58 +80,99 @@ function beerCalculator(type, quantityString, strengthString, volumeString, pric
     totalLitres = quantity * (volumePerUnit / 1000);
   }
 
-  /*
-    Total volume (litres) of product × (alcohol strength – 1.15%) × current excise duty rate
-  */
-
   //1.1 - From 2 Aug 2021 - $ per litre of alcohol - $45.07
   if (strength <= 3 && volumePerUnit < 8000) {
-    total = calculatePrice(totalLitres, strength, exciseDutyRateBeer11);
+    tax = calculatePrice(totalLitres, strength, exciseDutyRateBeer11);
   }
 
   //1.2 - From 2 Aug 2021 - $ per litre of alcohol - $9.01
   if (strength <= 3 && volumePerUnit > 48000) {
-    total = calculatePrice(totalLitres, strength, exciseDutyRateBeer12);
+    tax = calculatePrice(totalLitres, strength, exciseDutyRateBeer12);
   }
 
   //1.5 - From 2 Aug 2021 - $ per litre of alcohol - $52.49
   if ((strength > 3 && strength <= 3.5) && volumePerUnit < 8000) {
-    total = calculatePrice(totalLitres, strength, exciseDutyRateBeer15);
+    tax = calculatePrice(totalLitres, strength, exciseDutyRateBeer15);
   }
 
   //1.6 - From 2 Aug 2021 - $ per litre of alcohol - $28.23
   if ((strength > 3 && strength <= 3.5) && volumePerUnit > 48000) {
-    total = calculatePrice(totalLitres, strength, exciseDutyRateBeer16);
+    tax = calculatePrice(totalLitres, strength, exciseDutyRateBeer16);
   }
 
   //1.10 - From 2 Aug 2021 - $ per litre of alcohol - $52.49
   if (strength > 3.5 && volumePerUnit < 8000) {
-    total = calculatePrice(totalLitres, strength, exciseDutyRateBeer110);
+    tax = calculatePrice(totalLitres, strength, exciseDutyRateBeer110);
   }
 
   //1.11 - From 2 Aug 2021 - $ per litre of alcohol - $36.98
   if (strength > 3.5 && volumePerUnit > 48000) {
-    total = calculatePrice(totalLitres, strength, exciseDutyRateBeer111);
+    tax = calculatePrice(totalLitres, strength, exciseDutyRateBeer111);
   }
 
-  var resultText = "Total tax is $" + total + " of purchase price $" + price;
-  console.log(resultText);
-  document.getElementById("result").style.display = 'block';
-  document.getElementById("result-text").value = resultText;
+  printResults(tax, purchasePrice);
+}
+
+function spiritsCalculator(type, quantityString, strengthString, volumeString, priceString) {
+  var quantity = Number(quantityString);
+  var strength = Number(strengthString); // %
+  var volumePerUnit = Number(volumeString); //in millilitres
+  var purchasePrice = Number(priceString);
+  var tax;
+
+  var totalLitres = quantity * (volumePerUnit / 1000);
+
+  //3.1 - From 2 Aug 2021 - $ per litre of alcohol - $83.04
+  if (type == "brandy") {
+    tax = calculatePrice(totalLitres, strength, exciseDutyRateBrandy);
+  } else {
+
+    //2 - From 2 Aug 2021 - $ per litre of alcohol - $88.91
+    if (strength <= 10) {
+      tax = calculatePrice(totalLitres, strength, exciseDutyRateSpirits);
+    }
+
+    //3.2 - From 2 Aug 2021 - $ per litre of alcohol - $88.91
+    if (strength > 10) {
+      tax = calculatePrice(totalLitres, strength, exciseDutyRateSpirits);
+    }
+  }
+
+  printResults(tax.toFixed(2), purchasePrice);
 }
 
 function calculatePrice(litres, strength, exciseDutyRate) {
-  console.log("Litres: " + litres + ", strength: " + strength + ", excise duty rate: $" + exciseDutyRate);
+  var litresStrengthExciseDutyRatePrint = "Litres: " + litres + ", strength: " + strength + ", excise duty rate: $" + exciseDutyRate;
+  console.log(litresStrengthExciseDutyRatePrint);
+  document.getElementById("litresStrengthExciseDutyRatePrint").innerHTML = litresStrengthExciseDutyRatePrint;
+
   var overallStrength = (strength - 1.15) / 100;
-  console.log("Overall strength (strength - 1.15%): " + overallStrength);
-  var lalsNotRounded = litres * overallStrength;
-  console.log("LALs not rounded: " + lalsNotRounded);
+  var overallStrengthPrint = "Overall strength (" + strength + " - 1.15%): " + overallStrength;
+  console.log(overallStrengthPrint);
+  document.getElementById("overallStrengthPrint").innerHTML = overallStrengthPrint;
+
+  var lalsNotRounded = (litres * overallStrength).toFixed(2);
+  var lalsNotRoundedPrint = "LALs not rounded: " + lalsNotRounded;
+  console.log(lalsNotRoundedPrint);
+  document.getElementById("lalsNotRoundedPrint").innerHTML = lalsNotRoundedPrint;
+
   var lalsRoundedToFloor;
   if (lalsNotRounded > 1) {
     lalsRoundedToFloor = Math.floor(lalsNotRounded * 10) / 10;
   } else {
     lalsRoundedToFloor = lalsNotRounded; //TODO - must round somehow
   }
-  console.log("Final LAL: " + lalsRoundedToFloor);
+
+  var finalLalPrint = "Final LAL: " + Number(lalsRoundedToFloor).toFixed(2);
+  console.log(finalLalPrint);
+  document.getElementById("finalLalPrint").innerHTML = finalLalPrint;
+
   return lalsRoundedToFloor * exciseDutyRate;
+}
+
+function printResults(tax, purchasePrice) {
+  var resultPrint = "Total tax is $" + tax + ", which is " + ((tax / purchasePrice) * 100).toFixed(2)  + "% of purchase price $" + purchasePrice + ".";
+  console.log(resultPrint);
+  document.getElementById("resultPrint").innerHTML = resultPrint;
+  document.getElementById("result").style.display = 'block';
 }

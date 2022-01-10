@@ -27,8 +27,8 @@
     <h5>What did ya buy?</h5>
     <input type="radio" id="beer" name="whatDidYaBuyGroup" value="beer" onchange="onWhatDidYaBuyChange(value)">
     <label for="beer">Beer</label><br>
-    <input type="radio" id="spiritsOther" name="whatDidYaBuyGroup" value="spiritsOther" onchange="onWhatDidYaBuyChange(value)">
-    <label for="spiritsOther">Spirits/Other</label><br>
+    <input type="radio" id="spirits" name="whatDidYaBuyGroup" value="spirits" onchange="onWhatDidYaBuyChange(value)">
+    <label for="spirits">Spirits</label><br>
   </form>
 
   <form id="howMuch">
@@ -41,11 +41,14 @@
       <input type="radio" id="bottleTin" name="howMuchYaSnagGroup" value="bottleTin">
       <label for="bottleTin">Individual bottle/tin</label><br>
     </div>
-    <div id="spirits-other-selection">
-      <p>spirits-other-selection</p>
+    <div id="spirits-selection">
+      <input type="radio" id="brandy" name="howMuchYaSnagGroup" value="brandy">
+      <label for="brandy">Brandy</label><br>
+      <input type="radio" id="spirits" name="howMuchYaSnagGroup" value="spirits">
+      <label for="spirits">Any other spirits</label><br>
     </div>
-    <input type="text" id="quantityInput" name="quantityInput" value="0" onchange="onQuantityChange(value)">
     <label for="quantityInput">Quantity</label><br>
+    <input type="text" id="quantityInput" name="quantityInput" value="0" onchange="onQuantityChange(value)">
   </form>
 
   <form id="alcoholPercentage">
@@ -55,21 +58,25 @@
   </form>
 
   <form id="volume">
-    <h5>How much volume in a single container?</h5>
+    <h5>Volume in a single container?</h5>
       <input type="text" id="volumeInput" name="volumeInput" value="0" onchange="onVolumeChange(value)">
       <label for="volumeInput">ml</label><br>
   </form>
 
   <form id="price">
     <h5>How much ya cough up for it?</h5>
-    <input type="text" id="priceInput" name="priceInput" value="0">
     <label for="priceInput">Price ($)</label><br>
+    <input type="text" id="priceInput" name="priceInput" value="0">
 
     <input onclick="calculate()" type="button" value="Calculate!"/>
   </form>
 
   <div id="result">
-    <p id="result-text"></p>
+    <p id="litresStrengthExciseDutyRatePrint"></p>
+    <p id="overallStrengthPrint"></p>
+    <p id="lalsNotRoundedPrint"></p>
+    <p id="finalLalPrint"></p>
+    <p id="resultPrint"></p>
   </div>
 
 </body>
