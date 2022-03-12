@@ -17,57 +17,71 @@
 <header>
   <h1>A Bloody Rip Off</h1>
   <h2>D'ya know why alcohol is so bloody expensive in Australia? Tax. Forkin' tax. Find out how much of the case/bottle you buy is subject to thanks to the Australian Government.</h2>
+  <br />
+  <h3>Oright, What's the Damage?</h3>
 </header>
 
 <body>
+  <div id="content">
+    <div id="content-group">
+      <form id="what" onkeydown="return (event.keyCode!=13);">
+        <h5>What did ya buy?</h5>
+        <div id="whatGroup">
+          <input type="radio" id="beer" name="whatDidYaBuyGroup" value="beer" onchange="onWhatDidYaBuyChange(value)">
+          <label for="beer">Beer</label><br>
+          <input type="radio" id="spirits" name="whatDidYaBuyGroup" value="spirits" onchange="onWhatDidYaBuyChange(value)">
+          <label for="spirits">Spirits</label><br>
+        </div>
+      </form>
+    </div>
+  </div>
 
-  <h3>Oright, What's the Damage?</h3>
 
-  <form id="what">
-    <h5>What did ya buy?</h5>
-    <input type="radio" id="beer" name="whatDidYaBuyGroup" value="beer" onchange="onWhatDidYaBuyChange(value)">
-    <label for="beer">Beer</label><br>
-    <input type="radio" id="spirits" name="whatDidYaBuyGroup" value="spirits" onchange="onWhatDidYaBuyChange(value)">
-    <label for="spirits">Spirits</label><br>
-  </form>
-
-  <form id="howMuch">
+  <form id="howMuch" onkeydown="return (event.keyCode!=13);">
     <h5>How much ya snag?</h5>
     <div id="beer-selection">
-      <input type="radio" id="case" name="howMuchYaSnagGroup" value="case">
-      <label for="case">Case</label><br>
-      <input type="radio" id="sixPack" name="howMuchYaSnagGroup" value="sixPack">
-      <label for="sixPack">Six Pack</label><br>
-      <input type="radio" id="bottleTin" name="howMuchYaSnagGroup" value="bottleTin">
-      <label for="bottleTin">Individual bottle/tin</label><br>
+      <div id="howMuchBeerGroup">
+        <input type="radio" id="case" name="howMuchYaSnagGroup" value="case">
+        <label for="case">Case</label><br>
+        <input type="radio" id="sixPack" name="howMuchYaSnagGroup" value="sixPack">
+        <label for="sixPack">Six Pack</label><br>
+        <input type="radio" id="bottleTin" name="howMuchYaSnagGroup" value="bottleTin">
+        <label for="bottleTin">Individual bottle/tin</label><br>
+      </div>
     </div>
     <div id="spirits-selection">
-      <input type="radio" id="brandy" name="howMuchYaSnagGroup" value="brandy">
-      <label for="brandy">Brandy</label><br>
-      <input type="radio" id="spirits" name="howMuchYaSnagGroup" value="spirits">
-      <label for="spirits">Any other spirits</label><br>
+      <div id="howMuchSpiritsGroup">
+        <input type="radio" id="brandy" name="howMuchYaSnagGroup" value="brandy">
+        <label for="brandy">Brandy</label><br>
+        <input type="radio" id="spirits" name="howMuchYaSnagGroup" value="spirits">
+        <label for="spirits">Any other spirits</label><br>
+      </div>
     </div>
-    <label for="quantityInput">Quantity</label><br>
-    <input type="text" id="quantityInput" name="quantityInput" value="0" onchange="onQuantityChange(value)">
+    <br>
+    <div id="quantityGroup">
+      <label for="quantityInput">Quantity: </label>
+      <input type="text" id="quantityInput" name="quantityInput" value="0" onchange="onQuantityChange(value)">
+    </div>
   </form>
 
-  <form id="alcoholPercentage">
+  <form id="alcoholPercentage" onkeydown="return (event.keyCode!=13);">
     <h5>How strong's the bastard?</h5>
+    <div id="alcoholPercentageGroup">
       <input type="text" id="strengthInput" name="strengthInput" value="0" onchange="onAlcoholStrengthChange(value)">
       <label for="strengthInput">%</label><br>
+    </div>
   </form>
 
-  <form id="volume">
+  <form id="volume" onkeydown="return (event.keyCode!=13);">
     <h5>Volume in a single container?</h5>
-      <input type="text" id="volumeInput" name="volumeInput" value="0" onchange="onVolumeChange(value)">
-      <label for="volumeInput">ml</label><br>
+    <input type="text" id="volumeInput" name="volumeInput" value="0" onchange="onVolumeChange(value)">
+    <label for="volumeInput">ml</label><br>
   </form>
 
-  <form id="price">
-    <h5>How much ya cough up for it?</h5>
-    <label for="priceInput">Price ($)</label><br>
+  <form id="price" onkeydown="return (event.keyCode!=13);">
+    <h5>How much did it sting ya for?</h5>
+    <label for="priceInput">Total Price ($): </label><br>
     <input type="text" id="priceInput" name="priceInput" value="0">
-
     <input onclick="calculate()" type="button" value="Calculate!"/>
   </form>
 

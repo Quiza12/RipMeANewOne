@@ -1,5 +1,41 @@
+/*General*/
+
+* {
+  font-family: Helvetica, sans-serif;
+  color: black;
+}
+
+header {
+  width: 100%;
+  height: 60px;
+  position: fixed;
+  top: 0px;
+  text-align: center;
+  background-color: #fff;
+}
+
+#content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-top: 120px;
+}
+
+#content-group {
+  width: 600px;
+  text-align: center;
+}
+
+#what {
+
+}
+
 #howMuch {
   display: none;
+}
+
+#whatGroup, #howMuchBeerGroup, #howMuchSpiritsGroup, #quantityGroup, #alcoholPercentageGroup, #volume, #price {
+  display: flex;
 }
 
 #alcoholPercentage {

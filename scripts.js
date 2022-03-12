@@ -69,8 +69,9 @@ function beerCalculator(type, quantityString, strengthString, volumeString, pric
   var strength = Number(strengthString); // %
   var volumePerUnit = Number(volumeString); //in millilitres
   var price = Number(priceString);
-  var totalLitres;
   var tax;
+
+  var totalLitres;
 
   if (type == "case") {
     totalLitres = quantity * 24 * (volumePerUnit / 1000);
@@ -110,7 +111,7 @@ function beerCalculator(type, quantityString, strengthString, volumeString, pric
     tax = calculatePrice(totalLitres, strength, exciseDutyRateBeer111);
   }
 
-  printResults(tax, purchasePrice);
+  printResults(tax, price);
 }
 
 function spiritsCalculator(type, quantityString, strengthString, volumeString, priceString) {
@@ -138,20 +139,23 @@ function spiritsCalculator(type, quantityString, strengthString, volumeString, p
     }
   }
 
-  printResults(tax.toFixed(2), purchasePrice);
+  printResults(tax, purchasePrice);
 }
 
 function calculatePrice(litres, strength, exciseDutyRate) {
-  var litresStrengthExciseDutyRatePrint = "Litres: " + litres + ", strength: " + strength + ", excise duty rate: $" + exciseDutyRate;
+  var litresStrengthExciseDutyRatePrint = "Litres: " + litres.toFixed(2) + ", strength: " + strength + "%, excise duty rate: $" + exciseDutyRate;
   console.log(litresStrengthExciseDutyRatePrint);
   document.getElementById("litresStrengthExciseDutyRatePrint").innerHTML = litresStrengthExciseDutyRatePrint;
 
-  var overallStrength = (strength - 1.15) / 100;
-  var overallStrengthPrint = "Overall strength (" + strength + " - 1.15%): " + overallStrength;
+  var overallStrength = (strength - 1.15);
+  var overallStrengthPrint = "Overall strength (" + strength + "% - 1.15%): " + overallStrength.toFixed(2) + "%";
   console.log(overallStrengthPrint);
   document.getElementById("overallStrengthPrint").innerHTML = overallStrengthPrint;
 
-  var lalsNotRounded = (litres * overallStrength).toFixed(2);
+  var overallStrengthPercent = overallStrength / 100;
+  console.log("Overall strength percent: " + overallStrengthPrint + "%");
+
+  var lalsNotRounded = (litres * overallStrengthPercent).toFixed(2);
   var lalsNotRoundedPrint = "LALs not rounded: " + lalsNotRounded;
   console.log(lalsNotRoundedPrint);
   document.getElementById("lalsNotRoundedPrint").innerHTML = lalsNotRoundedPrint;
@@ -167,11 +171,16 @@ function calculatePrice(litres, strength, exciseDutyRate) {
   console.log(finalLalPrint);
   document.getElementById("finalLalPrint").innerHTML = finalLalPrint;
 
-  return lalsRoundedToFloor * exciseDutyRate;
+  //Total volume (litres) of product × (alcohol strength – 1.15%) × current excise duty rate
+
+  var totalTax = lalsRoundedToFloor * exciseDutyRate;
+  console.log("Total tax: " + totalTax);
+
+  return totalTax;
 }
 
 function printResults(tax, purchasePrice) {
-  var resultPrint = "Total tax is $" + tax + ", which is " + ((tax / purchasePrice) * 100).toFixed(2)  + "% of purchase price $" + purchasePrice + ".";
+  var resultPrint = "Total tax is $" + tax.toFixed(2) + ", which is " + ((tax / purchasePrice) * 100).toFixed(1)  + "% of purchase price $" + purchasePrice + ".";
   console.log(resultPrint);
   document.getElementById("resultPrint").innerHTML = resultPrint;
   document.getElementById("result").style.display = 'block';
