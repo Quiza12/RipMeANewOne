@@ -1,59 +1,119 @@
-/*General*/
+/* General */
 
 * {
   font-family: Helvetica, sans-serif;
   color: black;
-}
-
-header {
-  width: 100%;
-  height: 60px;
-  position: fixed;
-  top: 0px;
-  text-align: center;
   background-color: #fff;
 }
 
-#content {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  margin-top: 120px;
+/* Header */
+header {
+  width: 100%;
+  text-align: center;
+  top: 0px;
+  height: 150px;
 }
 
-#content-group {
-  width: 600px;
+#header-content {
+  display: flex;
+  width: inherit;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 15px;
+  align-items: center;       
+}
+
+#header-wrapper {
+  width: 500px;                    
+}
+
+h1 {
+  padding-top: 50px;
+  width: 100%;
+  height: 100px;
+}
+
+h4 {
+  padding-top: 20px;
+  width: 700px;
+}
+
+
+/* Main Form Content */
+body {
   text-align: center;
+  height: 150px;
+}
+
+#body-content {
+  display: flex;
+  width: inherit;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+}
+
+#body-content-group {
+  display: flex;
+  width: inherit;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 #what {
+  display: flex;
+  width: inherit;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
 
+form {
+  margin-top: 20px;
+}
+
+#howMuchBeerGroup, #howMuchSpiritsGroup, #quantityGroup, #alcoholPercentageGroup, #volume, #price {
+  width: inherit;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 #howMuch {
   display: none;
-}
-
-#whatGroup, #howMuchBeerGroup, #howMuchSpiritsGroup, #quantityGroup, #alcoholPercentageGroup, #volume, #price {
-  display: flex;
+  text-align: center;
 }
 
 #alcoholPercentage {
   display: none;
+  text-align: center;
 }
 
 #volume {
   display: none;
+  text-align: center;
 }
 
 #price {
   display: none;
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 #result {
   display: none;
+  text-align: center;
 }
 
 #resultPrint {
   font-weight: bold;
+  text-align: center;
+}
+
+input[type="text"] {
+  width: 60px;
 }

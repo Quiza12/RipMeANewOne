@@ -18,7 +18,7 @@ var exciseDutyRateSpirits= 88.91;
 
 function onWhatDidYaBuyChange(alcohol) {
   alcohol = alcohol;
-  if (alcohol == "beer") {
+  if (alcohol == "beerType") {
     document.getElementById("beer-selection").style.display = 'block';
     document.getElementById("spirits-selection").style.display = 'none';
   } else {
@@ -184,4 +184,34 @@ function printResults(tax, purchasePrice) {
   console.log(resultPrint);
   document.getElementById("resultPrint").innerHTML = resultPrint;
   document.getElementById("result").style.display = 'block';
+}
+
+function reset() {
+  // What group
+  document.getElementById("beerType").checked = false;
+  document.getElementById("spiritsType").checked = false;
+
+  // How much group
+  document.getElementById("howMuch").style.display = 'none';
+  document.getElementById("beer-selection").style.display = 'none';
+  document.getElementById("spirits-selection").style.display = 'none';
+  document.getElementById("case").checked = false;
+  document.getElementById("sixPack").checked = false;
+  document.getElementById("bottleTin").checked = false;
+  document.getElementById("brandy").checked = false;
+  document.getElementById("spirits").checked = false;
+  //then hide
+
+  // Alcohol % group
+  document.getElementById("alcoholPercentage").style.display = 'none';
+
+  // Volume group
+  document.getElementById("volume").style.display = 'none';
+
+  // Price group
+  document.getElementById("price").style.display = 'none';
+
+  // Results group
+  document.getElementById("result").style.display = 'none';
+
 }

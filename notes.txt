@@ -1,7 +1,9 @@
 To test locally without CORS issues:
 
-Run from root directory: http-server
+Run from root directory: live-server
 
 https://www.ato.gov.au/business/excise-on-alcohol/lodging,-paying-and-rates---excisable-alcohol/excise-duty-rates-for-alcohol/
 
 Total volume (litres) of product × (alcohol strength – 1.15%) × current excise duty rate
+
+nodemon /Users/matthewquerzoli/.nvm/versions/node/v14.17.3/bin/http-server /Users/matthewquerzoli/Projects/ABloodyRipOff
