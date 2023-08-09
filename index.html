@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-  <title>🥂 Rip Me A New One</title>
+  <title>Rip Me A New One</title>
 
   <meta charset="utf-8">
   <meta name="description" content="A tax calculator for alcohol bought in Australia.">
@@ -12,7 +12,7 @@
 
   <link rel="stylesheet" type="text/css" href="styles.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <!-- <link rel="icon" type="image/x-icon" href="/favicon.ico"> -->
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 
 <header>
@@ -28,11 +28,11 @@
   <div id="body-content">
     <div id="body-content-group">
 
-      <button onclick="reset()">Reset</button> 
+      <button onclick="resetAll()">Reset</button> 
 
       <br/>
 
-      <form id="what" onkeydown="return (event.keyCode!=13);">
+      <form id="what" onchange="onWhatDidYaBuyChange(value);">
         <h5>What did ya buy?</h5>
         <div id="whatGroup">
           <input type="radio" id="beerType" name="whatDidYaBuyGroup" value="beer" onchange="onWhatDidYaBuyChange(value)">
@@ -44,16 +44,16 @@
 
       <br/>
 
-      <form id="howMuch" onkeydown="return (event.keyCode!=13);">
+      <form id="howMuch" onchange="onQuantityChange();">
         <h5>How much ya snag?</h5>
         <div id="beer-selection">
           <div id="howMuchBeerGroup">
             <input type="radio" id="case" name="howMuchYaSnagGroup" value="case">
-            <label for="case">Case</label><br>
+            <label for="case">Case (24)</label><br>
             <input type="radio" id="sixPack" name="howMuchYaSnagGroup" value="sixPack">
-            <label for="sixPack">Six Pack</label><br>
+            <label for="sixPack">Six-pack (6)</label><br>
             <input type="radio" id="bottleTin" name="howMuchYaSnagGroup" value="bottleTin">
-            <label for="bottleTin">Individual bottle/tin</label><br>
+            <label for="bottleTin">Bottle/tin (1)</label><br>
           </div>
         </div>
         <div id="spirits-selection">
@@ -66,7 +66,7 @@
         </div>
         <div id="quantityGroup">
           <label for="quantityInput">Quantity: </label>
-          <input type="text" id="quantityInput" name="quantityInput" value="0" onchange="onQuantityChange(value)">
+          <input type="text" id="quantityInput" name="quantityInput" onfocus="this.value=''" value="0" onchange="onQuantityChange()">
         </div>
       </form>
 
@@ -75,7 +75,7 @@
       <form id="alcoholPercentage" onkeydown="return (event.keyCode!=13);">
         <h5>How strong's the bastard?</h5>
         <div id="alcoholPercentageGroup">
-          <input type="text" id="strengthInput" name="strengthInput" value="0" onchange="onAlcoholStrengthChange(value)">
+          <input type="text" id="strengthInput" name="strengthInput" onfocus="this.value=''" value="0" onchange="onAlcoholStrengthChange()">
           <label for="strengthInput">%</label><br>
         </div>
       </form>
@@ -84,7 +84,7 @@
     
       <form id="volume" onkeydown="return (event.keyCode!=13);">
         <h5>Volume in a single container?</h5>
-        <input type="text" id="volumeInput" name="volumeInput" value="0" onchange="onVolumeChange(value)">
+        <input type="text" id="volumeInput" name="volumeInput" onfocus="this.value=''" value="0" onchange="onVolumeChange(value)">
         <label for="volumeInput">ml</label><br>
       </form>
 
@@ -93,7 +93,7 @@
       <form id="price" onkeydown="return (event.keyCode!=13);">
         <h5>How much did it sting ya for?</h5>
         <label for="priceInput">Total Price ($): </label><br>
-        <input type="text" id="priceInput" name="priceInput" value="0">
+        <input type="text" id="priceInput" name="priceInput" onfocus="this.value=''" value="0">
         <input onclick="calculate()" type="button" value="Calculate!"/>
       </form>    
 

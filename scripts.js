@@ -17,8 +17,8 @@ var exciseDutyRateSpirits= 88.91;
 // var exciseDutyRateBeerExample = 50.70;
 
 function onWhatDidYaBuyChange(alcohol) {
-  alcohol = alcohol;
-  if (alcohol == "beerType") {
+  resetOnWhatGroupChange();
+  if (alcohol == "beer") {
     document.getElementById("beer-selection").style.display = 'block';
     document.getElementById("spirits-selection").style.display = 'none';
   } else {
@@ -28,15 +28,16 @@ function onWhatDidYaBuyChange(alcohol) {
   document.getElementById("howMuch").style.display = 'block';
 }
 
-function onQuantityChange(quantity) {
+function onQuantityChange() {
+  resetOnHowMuchGroupChange();
   document.getElementById("alcoholPercentage").style.display = 'block';
 }
 
-function onAlcoholStrengthChange(strength) {
+function onAlcoholStrengthChange() {
   document.getElementById("volume").style.display = 'block';
 }
 
-function onVolumeChange(volume) {
+function onVolumeChange() {
   document.getElementById("price").style.display = 'block';
 }
 
@@ -183,15 +184,41 @@ function printResults(tax, purchasePrice) {
   var resultPrint = "Total tax is $" + tax.toFixed(2) + ", which is " + ((tax / purchasePrice) * 100).toFixed(1)  + "% of purchase price $" + purchasePrice + ".";
   console.log(resultPrint);
   document.getElementById("resultPrint").innerHTML = resultPrint;
-  document.getElementById("result").style.display = 'block';
+  document.getElementById("result").style.display = 'inline-block';
 }
 
-function reset() {
-  // What group
+// Reset
+
+function resetAll() {
+  resetWhatGroup();
+  resetHowMuchGroup();
+  resetStrengthGroup();
+  resetVolumeGroup();
+  resetPriceGroup();
+  resetResultsGroup();
+}
+
+function resetOnWhatGroupChange() {
+  resetHowMuchGroup();
+  resetStrengthGroup();
+  resetVolumeGroup();
+  resetPriceGroup();
+  resetResultsGroup();
+}
+
+function resetOnHowMuchGroupChange() {
+  resetStrengthGroup();
+  resetVolumeGroup();
+  resetPriceGroup();
+  resetResultsGroup();
+}
+
+function resetWhatGroup() {
   document.getElementById("beerType").checked = false;
   document.getElementById("spiritsType").checked = false;
+}
 
-  // How much group
+function resetHowMuchGroup() {
   document.getElementById("howMuch").style.display = 'none';
   document.getElementById("beer-selection").style.display = 'none';
   document.getElementById("spirits-selection").style.display = 'none';
@@ -200,18 +227,25 @@ function reset() {
   document.getElementById("bottleTin").checked = false;
   document.getElementById("brandy").checked = false;
   document.getElementById("spirits").checked = false;
-  //then hide
-
-  // Alcohol % group
-  document.getElementById("alcoholPercentage").style.display = 'none';
-
-  // Volume group
   document.getElementById("volume").style.display = 'none';
+  document.getElementById("quantityInput").value = '0';
+}
 
-  // Price group
+function resetStrengthGroup() {
+  document.getElementById("alcoholPercentage").style.display = 'none';
+  document.getElementById("strengthInput").value = '0';
+}
+
+function resetVolumeGroup() {
+  document.getElementById("volume").style.display = 'none';
+  document.getElementById("volumeInput").value = '0';
+}
+
+function resetPriceGroup() {
   document.getElementById("price").style.display = 'none';
+  document.getElementById("priceInput").value = '0';
+}
 
-  // Results group
+function resetResultsGroup() {
   document.getElementById("result").style.display = 'none';
-
 }

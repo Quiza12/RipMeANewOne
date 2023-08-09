@@ -107,13 +107,27 @@ form {
 #result {
   display: none;
   text-align: center;
+  margin-bottom: 0px;
 }
 
 #resultPrint {
   font-weight: bold;
   text-align: center;
+  margin-bottom: 0px;
+}
+
+p {
+  margin-bottom: 0px;
 }
 
 input[type="text"] {
   width: 60px;
+}
+
+@media screen and (max-width: 700px) {
+  
+  h4 {
+    width: 400px;
+  }
+
 }
