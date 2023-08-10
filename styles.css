@@ -71,6 +71,10 @@ body {
   margin-top: 20px;
 }
 
+#whatGroup {
+  
+}
+
 form {
   margin-top: 20px;
 }
@@ -101,19 +105,18 @@ form {
 #price {
   display: none;
   text-align: center;
-  margin-bottom: 50px;
-}
-
-#result {
-  display: none;
-  text-align: center;
-  margin-bottom: 0px;
+  margin-bottom: 30px;
 }
 
 #resultPrint {
   font-weight: bold;
   text-align: center;
-  margin-bottom: 0px;
+}
+
+#results {
+  display: none;
+  text-align: center;
+  margin-bottom: 50px;
 }
 
 p {

@@ -184,11 +184,10 @@ function printResults(tax, purchasePrice) {
   var resultPrint = "Total tax is $" + tax.toFixed(2) + ", which is " + ((tax / purchasePrice) * 100).toFixed(1)  + "% of purchase price $" + purchasePrice + ".";
   console.log(resultPrint);
   document.getElementById("resultPrint").innerHTML = resultPrint;
-  document.getElementById("result").style.display = 'inline-block';
+  document.getElementById("results").style.display = 'inline-block';
 }
 
 // Reset
-
 function resetAll() {
   resetWhatGroup();
   resetHowMuchGroup();
@@ -247,5 +246,5 @@ function resetPriceGroup() {
 }
 
 function resetResultsGroup() {
-  document.getElementById("result").style.display = 'none';
+  document.getElementById("results").style.display = 'none';
 }
