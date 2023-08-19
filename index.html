@@ -44,29 +44,29 @@
 
       <br/>
 
-      <form id="howMuch" onchange="onQuantityChange();">
+      <form id="howMuch">
         <h5>How much ya snag?</h5>
         <div id="beer-selection">
           <div id="howMuchBeerGroup">
-            <input type="radio" id="case" name="howMuchYaSnagGroup" value="case">
+            <input type="radio" id="case" name="howMuchYaSnagGroup" value="case" onchange="onHowMuchRadioChange()">
             <label for="case">Case (24)</label><br>
-            <input type="radio" id="sixPack" name="howMuchYaSnagGroup" value="sixPack">
+            <input type="radio" id="sixPack" name="howMuchYaSnagGroup" value="sixPack" onchange="onHowMuchRadioChange()">
             <label for="sixPack">Six-pack (6)</label><br>
-            <input type="radio" id="bottleTin" name="howMuchYaSnagGroup" value="bottleTin">
+            <input type="radio" id="bottleTin" name="howMuchYaSnagGroup" value="bottleTin" onchange="onHowMuchRadioChange()">
             <label for="bottleTin">Bottle/tin (1)</label><br>
           </div>
         </div>
         <div id="spirits-selection">
           <div id="howMuchSpiritsGroup">
-            <input type="radio" id="brandy" name="howMuchYaSnagGroup" value="brandy">
+            <input type="radio" id="brandy" name="howMuchYaSnagGroup" value="brandy" onchange="onHowMuchRadioChange()">
             <label for="brandy">Brandy</label><br>
-            <input type="radio" id="spirits" name="howMuchYaSnagGroup" value="spirits">
+            <input type="radio" id="spirits" name="howMuchYaSnagGroup" value="spirits" onchange="onHowMuchRadioChange()">
             <label for="spirits">Any other spirits</label><br>
           </div>
         </div>
         <div id="quantityGroup">
           <label for="quantityInput">Quantity: </label>
-          <input type="text" id="quantityInput" name="quantityInput" onfocus="this.value=''" value="0" onchange="onQuantityChange()">
+          <input type="text" id="quantityInput" name="quantityInput" onfocus="this.value=''" onkeyup="onQuantityChange()" >
         </div>
       </form>
 
@@ -75,7 +75,7 @@
       <form id="alcoholPercentage" onkeydown="return (event.keyCode!=13);">
         <h5>How strong's the bastard?</h5>
         <div id="alcoholPercentageGroup">
-          <input type="text" id="strengthInput" name="strengthInput" onfocus="this.value=''" value="0" onchange="onAlcoholStrengthChange()">
+          <input type="text" id="strengthInput" name="strengthInput" value="" onfocus="this.value=''" onkeyup="onStrengthChange()">
           <label for="strengthInput">%</label><br>
         </div>
       </form>
@@ -93,8 +93,8 @@
       <form id="price" onkeydown="return (event.keyCode!=13);">
         <h5>How much did it sting ya for?</h5>
         <label for="priceInput">Total Price ($): </label><br>
-        <input type="text" id="priceInput" name="priceInput" onfocus="this.value=''" value="0">
-        <input onclick="calculate()" type="button" value="Calculate!"/>
+        <input type="text" id="priceInput" name="priceInput" onfocus="this.value=''" value="0" onchange="onPriceChange()">
+        <input id="calculateBtn" onclick="calculate()" type="button"  value="Calculate!" disabled="true"/>
       </form>    
 
       <br/>

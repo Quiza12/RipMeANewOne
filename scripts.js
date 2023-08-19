@@ -1,3 +1,10 @@
+// Input Elements
+
+var quantityInput = "quantityInput";
+var strengthInput = "strengthInput";
+var volumeInput = "volumeInput";
+var priceInput = "priceInput";
+
 /*
   Total volume (litres) of product × (alcohol strength – 1.15%) × current excise duty rate
 */
@@ -14,7 +21,71 @@ var exciseDutyRateBeer116 = 3.65;
 var exciseDutyRateBrandy = 83.04;
 var exciseDutyRateSpirits= 88.91;
 
-// var exciseDutyRateBeerExample = 50.70;
+var incorrectOrEmptyValueBorderHighlight = "1px solid red";
+var correctValueBorderHighlight = "1px solid black";
+
+// Form Validations
+
+function formValueValid(value) {
+  if (!isNaN(value)) {
+    return true;
+  } 
+}
+
+function performFormValidationAndEnableElement(inputId, elementToEnable) {
+  var inputValue = document.getElementById(inputId).value;
+  if (inputValue === "undefined") {
+    document.getElementById(inputId).style.border = incorrectOrEmptyValueBorderHighlight;
+  } else if (formValueValid(inputValue)) {
+    document.getElementById(inputId).style.border = correctValueBorderHighlight;
+    document.getElementById(elementToEnable).disabled = false;
+  } else {
+    document.getElementById(inputId).style.border = incorrectOrEmptyValueBorderHighlight;
+  }
+}
+
+function performFormValidationAndDisplayNextInput(inputId, nextInputId) {
+  var inputValue = document.getElementById(inputId).value;
+  if (inputValue === "undefined") {
+    document.getElementById(inputId).style.border = incorrectOrEmptyValueBorderHighlight;
+  } else if (formValueValid(inputValue)) {
+    document.getElementById(inputId).style.border = correctValueBorderHighlight;
+    document.getElementById(nextInputId).style.display = 'block';
+  } else {
+    document.getElementById(inputId).style.border = incorrectOrEmptyValueBorderHighlight;
+  }
+}
+
+function finalValidationOnCalculation() {
+  var quantity = document.getElementById(quantityInput).value;
+  var strength = document.getElementById(strengthInput).value;
+  var volume = document.getElementById(volumeInput).value;
+  var price = document.getElementById(priceInput).value;
+
+  var readyToCalculate = true;
+
+  if (quantity === "undefined" || !formValueValid(quantity)) {
+    readyToCalculate = false;
+    document.getElementById(quantityInput).style.border = incorrectOrEmptyValueBorderHighlight;
+  } 
+  if (strength === "undefined" || !formValueValid(strength)) {
+    readyToCalculate = false;
+    document.getElementById(strengthInput).style.border = incorrectOrEmptyValueBorderHighlight;
+  } 
+  if (volume === "undefined" || !formValueValid(volume)) {
+    readyToCalculate = false;
+    document.getElementById(volumeInput).style.border = incorrectOrEmptyValueBorderHighlight;
+  } 
+  if (price === "undefined" || !formValueValid(price)) {
+    readyToCalculate = false;
+    document.getElementById(priceInput).style.border = incorrectOrEmptyValueBorderHighlight;
+  }
+
+  return readyToCalculate;
+}
+
+
+// 1. What did ya buy?
 
 function onWhatDidYaBuyChange(alcohol) {
   resetOnWhatGroupChange();
@@ -28,41 +99,74 @@ function onWhatDidYaBuyChange(alcohol) {
   document.getElementById("howMuch").style.display = 'block';
 }
 
+// 2. How much ya snag?
+
 function onQuantityChange() {
-  resetOnHowMuchGroupChange();
-  document.getElementById("alcoholPercentage").style.display = 'block';
+  if (!document.getElementById(quantityInput).value == "") {
+    performFormValidationAndDisplayNextInput(quantityInput, "alcoholPercentage");
+  }
 }
 
-function onAlcoholStrengthChange() {
-  document.getElementById("volume").style.display = 'block';
+function onHowMuchRadioChange() {
+  resetOnHowMuchGroupChange();
 }
+
+// 3. How strong's the bastard?
+
+function onStrengthChange() {
+  if (!document.getElementById(strengthInput).value == "") {
+    performFormValidationAndDisplayNextInput(strengthInput, "volume");
+  }
+}
+
+// 4. Volume in a single container?
 
 function onVolumeChange() {
-  document.getElementById("price").style.display = 'block';
+  if (!document.getElementById(volumeInput).value == "") {
+    performFormValidationAndDisplayNextInput(volumeInput, "price");
+    document.getElementById("calculateBtn").disabled = true;
+  }
+}
+
+// 5. How much did it sting ya for?
+
+function onPriceChange() {
+  if (!document.getElementById(priceInput).value == "") {
+    performFormValidationAndEnableElement(priceInput, "calculateBtn");
+  }
+}
+
+// Calculation
+
+function logCaluclationToConsole() {
+  console.log("Alcohol: " + document.querySelector('input[name=whatDidYaBuyGroup]:checked').value);
+  console.log("Type: " + document.querySelector('input[name=howMuchYaSnagGroup]:checked').value);
+  console.log("Quantity: " + document.getElementById(quantityInput).value);
+  console.log("Strength: " + document.getElementById(strengthInput).value);
+  console.log("Volume: " + document.getElementById(volumeInput).value);
+  console.log("Price: " + document.getElementById(priceInput).value);
 }
 
 function calculate() {
-  console.log("Alcohol: " + document.querySelector('input[name=whatDidYaBuyGroup]:checked').value);
-  console.log("Type: " + document.querySelector('input[name=howMuchYaSnagGroup]:checked').value);
-  console.log("Quantity: " + document.getElementById("quantityInput").value);
-  console.log("Strength: " + document.getElementById("strengthInput").value);
-  console.log("Volume: " + document.getElementById("volumeInput").value);
-  console.log("Price: " + document.getElementById("priceInput").value);
+  if (finalValidationOnCalculation()) {
+    logCaluclationToConsole();
 
-  var alcohol = document.querySelector('input[name=whatDidYaBuyGroup]:checked').value;
-  var type = document.querySelector('input[name=howMuchYaSnagGroup]:checked').value;
-  var quantity = document.getElementById("quantityInput").value;
-  var strength = document.getElementById("strengthInput").value;
-  var volume = document.getElementById("volumeInput").value;
-  var price = document.getElementById("priceInput").value;
-
-  if (alcohol == "beer") {
-    beerCalculator(type, quantity, strength, volume, price);
-  } else if (alcohol == "spirits") {
-    spiritsCalculator(type, quantity, strength, volume, price);
+    var alcohol = document.querySelector('input[name=whatDidYaBuyGroup]:checked').value;
+    var type = document.querySelector('input[name=howMuchYaSnagGroup]:checked').value;
+    var quantity = document.getElementById(quantityInput).value;
+    var strength = document.getElementById(strengthInput).value;
+    var volume = document.getElementById(volumeInput).value;
+    var price = document.getElementById(priceInput).value;
+  
+    if (alcohol == "beer") {
+      beerCalculator(type, quantity, strength, volume, price);
+    } else if (alcohol == "spirits") {
+      spiritsCalculator(type, quantity, strength, volume, price);
+    }
+  
+    document.getElementById("results").style.display = 'block';
   }
-
-  document.getElementById("result").style.display = 'block';
+  
 }
 
 function beerCalculator(type, quantityString, strengthString, volumeString, priceString) {
@@ -206,6 +310,7 @@ function resetOnWhatGroupChange() {
 }
 
 function resetOnHowMuchGroupChange() {
+  document.getElementById(quantityInput).value = '';
   resetStrengthGroup();
   resetVolumeGroup();
   resetPriceGroup();
@@ -227,22 +332,22 @@ function resetHowMuchGroup() {
   document.getElementById("brandy").checked = false;
   document.getElementById("spirits").checked = false;
   document.getElementById("volume").style.display = 'none';
-  document.getElementById("quantityInput").value = '0';
+  document.getElementById(quantityInput).value = '';
 }
 
 function resetStrengthGroup() {
   document.getElementById("alcoholPercentage").style.display = 'none';
-  document.getElementById("strengthInput").value = '0';
+  document.getElementById(strengthInput).value = '';
 }
 
 function resetVolumeGroup() {
   document.getElementById("volume").style.display = 'none';
-  document.getElementById("volumeInput").value = '0';
+  document.getElementById(volumeInput).value = '';
 }
 
 function resetPriceGroup() {
   document.getElementById("price").style.display = 'none';
-  document.getElementById("priceInput").value = '0';
+  document.getElementById(priceInput).value = '';
 }
 
 function resetResultsGroup() {
