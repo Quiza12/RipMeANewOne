@@ -46,9 +46,7 @@ function performFormValidationAndEnableElement(inputId, elementToEnable) {
 
 function performFormValidationAndDisplayNextInput(inputId, nextInputId) {
   var inputValue = document.getElementById(inputId).value;
-  if (inputValue === "undefined") {
-    document.getElementById(inputId).style.border = incorrectOrEmptyValueBorderHighlight;
-  } else if (formValueValid(inputValue)) {
+  if (formValueValid(inputValue)) {
     document.getElementById(inputId).style.border = correctValueBorderHighlight;
     document.getElementById(nextInputId).style.display = 'block';
   } else {
@@ -64,19 +62,19 @@ function finalValidationOnCalculation() {
 
   var readyToCalculate = true;
 
-  if (quantity === "undefined" || !formValueValid(quantity)) {
+  if (quantity === "undefined" || quantity.length == 0 || !formValueValid(quantity)) {
     readyToCalculate = false;
     document.getElementById(quantityInput).style.border = incorrectOrEmptyValueBorderHighlight;
   } 
-  if (strength === "undefined" || !formValueValid(strength)) {
+  if (strength === "undefined" || strength.length == 0 ||!formValueValid(strength)) {
     readyToCalculate = false;
     document.getElementById(strengthInput).style.border = incorrectOrEmptyValueBorderHighlight;
   } 
-  if (volume === "undefined" || !formValueValid(volume)) {
+  if (volume === "undefined" || volume.length == 0 ||!formValueValid(volume)) {
     readyToCalculate = false;
     document.getElementById(volumeInput).style.border = incorrectOrEmptyValueBorderHighlight;
   } 
-  if (price === "undefined" || !formValueValid(price)) {
+  if (price === "undefined" || price.length == 0 ||!formValueValid(price)) {
     readyToCalculate = false;
     document.getElementById(priceInput).style.border = incorrectOrEmptyValueBorderHighlight;
   }
@@ -333,21 +331,25 @@ function resetHowMuchGroup() {
   document.getElementById("spirits").checked = false;
   document.getElementById("volume").style.display = 'none';
   document.getElementById(quantityInput).value = '';
+  document.getElementById(quantityInput).style.border = correctValueBorderHighlight;
 }
 
 function resetStrengthGroup() {
   document.getElementById("alcoholPercentage").style.display = 'none';
   document.getElementById(strengthInput).value = '';
+  document.getElementById(strengthInput).style.border = correctValueBorderHighlight;
 }
 
 function resetVolumeGroup() {
   document.getElementById("volume").style.display = 'none';
   document.getElementById(volumeInput).value = '';
+  document.getElementById(volumeInput).style.border = correctValueBorderHighlight;
 }
 
 function resetPriceGroup() {
   document.getElementById("price").style.display = 'none';
   document.getElementById(priceInput).value = '';
+  document.getElementById(priceInput).style.border = correctValueBorderHighlight;
 }
 
 function resetResultsGroup() {
