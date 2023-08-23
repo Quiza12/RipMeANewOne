@@ -62,13 +62,18 @@ body {
   align-items: center;
 }
 
-#what {
+#what-did-ya-buy {
   display: flex;
   width: inherit;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+}
+
+#how-much {
+  display: none;
+  text-align: center;
 }
 
 input {
@@ -79,7 +84,7 @@ form {
   margin-top: 20px;
 }
 
-#howMuchBeerGroup, #howMuchSpiritsGroup, #quantityGroup, #alcoholPercentageGroup, #volume, #price {
+#how-much-beer-group, #how-much-spirits-group, #quantity-group, #alcohol-percentage-group, #volume-group, #price-group {
   width: inherit;
   flex-direction: column;
   justify-content: center;
@@ -87,22 +92,17 @@ form {
   text-align: center;
 }
 
-#howMuch {
+#alcohol-percentage {
   display: none;
   text-align: center;
 }
 
-#alcoholPercentage {
+#volume-group {
   display: none;
   text-align: center;
 }
 
-#volume {
-  display: none;
-  text-align: center;
-}
-
-#price {
+#price-group {
   display: none;
   text-align: center;
   margin-bottom: 30px;
@@ -113,7 +113,7 @@ form {
   text-align: center;
 }
 
-#results {
+#results-group {
   display: none;
   text-align: center;
   margin-bottom: 50px;

@@ -5,6 +5,12 @@ var strengthInput = "strengthInput";
 var volumeInput = "volumeInput";
 var priceInput = "priceInput";
 
+// IDs
+var howMuch = "how-much"
+var beerSelectionGroup = "beer-selection";
+var spiritsSelectionGroup = "spirits-selection";
+var volumeGroup = "volume-group";
+
 /*
   Total volume (litres) of product × (alcohol strength – 1.15%) × current excise duty rate
 */
@@ -88,20 +94,20 @@ function finalValidationOnCalculation() {
 function onWhatDidYaBuyChange(alcohol) {
   resetOnWhatGroupChange();
   if (alcohol == "beer") {
-    document.getElementById("beer-selection").style.display = 'block';
-    document.getElementById("spirits-selection").style.display = 'none';
+    document.getElementById(beerSelectionGroup).style.display = 'block';
+    document.getElementById(spiritsSelectionGroup).style.display = 'none';
   } else {
-    document.getElementById("beer-selection").style.display = 'none';
-    document.getElementById("spirits-selection").style.display = 'block';
+    document.getElementById(beerSelectionGroup).style.display = 'none';
+    document.getElementById(spiritsSelectionGroup).style.display = 'block';
   }
-  document.getElementById("howMuch").style.display = 'block';
+  document.getElementById(howMuch).style.display = 'block';
 }
 
 // 2. How much ya snag?
 
 function onQuantityChange() {
   if (!document.getElementById(quantityInput).value == "") {
-    performFormValidationAndDisplayNextInput(quantityInput, "alcoholPercentage");
+    performFormValidationAndDisplayNextInput(quantityInput, "alcohol-percentage");
   }
 }
 
@@ -113,7 +119,7 @@ function onHowMuchRadioChange() {
 
 function onStrengthChange() {
   if (!document.getElementById(strengthInput).value == "") {
-    performFormValidationAndDisplayNextInput(strengthInput, "volume");
+    performFormValidationAndDisplayNextInput(strengthInput, volumeGroup);
   }
 }
 
@@ -121,7 +127,7 @@ function onStrengthChange() {
 
 function onVolumeChange() {
   if (!document.getElementById(volumeInput).value == "") {
-    performFormValidationAndDisplayNextInput(volumeInput, "price");
+    performFormValidationAndDisplayNextInput(volumeInput, "price-group");
     document.getElementById("calculateBtn").disabled = true;
   }
 }
@@ -162,7 +168,7 @@ function calculate() {
       spiritsCalculator(type, quantity, strength, volume, price);
     }
   
-    document.getElementById("results").style.display = 'block';
+    document.getElementById("results-group").style.display = 'block';
   }
   
 }
@@ -286,7 +292,7 @@ function printResults(tax, purchasePrice) {
   var resultPrint = "Total tax is $" + tax.toFixed(2) + ", which is " + ((tax / purchasePrice) * 100).toFixed(1)  + "% of purchase price $" + purchasePrice + ".";
   console.log(resultPrint);
   document.getElementById("resultPrint").innerHTML = resultPrint;
-  document.getElementById("results").style.display = 'inline-block';
+  document.getElementById("results-group").style.display = 'inline-block';
 }
 
 // Reset
@@ -321,37 +327,37 @@ function resetWhatGroup() {
 }
 
 function resetHowMuchGroup() {
-  document.getElementById("howMuch").style.display = 'none';
-  document.getElementById("beer-selection").style.display = 'none';
-  document.getElementById("spirits-selection").style.display = 'none';
+  document.getElementById(howMuch).style.display = 'none';
+  document.getElementById(beerSelectionGroup).style.display = 'none';
+  document.getElementById(spiritsSelectionGroup).style.display = 'none';
   document.getElementById("case").checked = false;
   document.getElementById("sixPack").checked = false;
   document.getElementById("bottleTin").checked = false;
   document.getElementById("brandy").checked = false;
   document.getElementById("spirits").checked = false;
-  document.getElementById("volume").style.display = 'none';
+  document.getElementById(volumeGroup).style.display = 'none';
   document.getElementById(quantityInput).value = '';
   document.getElementById(quantityInput).style.border = correctValueBorderHighlight;
 }
 
 function resetStrengthGroup() {
-  document.getElementById("alcoholPercentage").style.display = 'none';
+  document.getElementById("alcohol-percentage").style.display = 'none';
   document.getElementById(strengthInput).value = '';
   document.getElementById(strengthInput).style.border = correctValueBorderHighlight;
 }
 
 function resetVolumeGroup() {
-  document.getElementById("volume").style.display = 'none';
+  document.getElementById(volumeGroup).style.display = 'none';
   document.getElementById(volumeInput).value = '';
   document.getElementById(volumeInput).style.border = correctValueBorderHighlight;
 }
 
 function resetPriceGroup() {
-  document.getElementById("price").style.display = 'none';
+  document.getElementById("price-group").style.display = 'none';
   document.getElementById(priceInput).value = '';
   document.getElementById(priceInput).style.border = correctValueBorderHighlight;
 }
 
 function resetResultsGroup() {
-  document.getElementById("results").style.display = 'none';
+  document.getElementById("results-group").style.display = 'none';
 }

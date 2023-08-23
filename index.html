@@ -32,9 +32,9 @@
 
       <br/>
 
-      <form id="what">
+      <form id="what-did-ya-buy">
         <h5>What did ya buy?</h5>
-        <div id="whatGroup">
+        <div id="what-did-ya-buy-group">
           <input type="radio" id="beerType" name="whatDidYaBuyGroup" value="beer" onchange="onWhatDidYaBuyChange(value)">
           <label for="beer">Beer</label><br>
           <input type="radio" id="spiritsType" name="whatDidYaBuyGroup" value="spirits" onchange="onWhatDidYaBuyChange(value)">
@@ -44,10 +44,10 @@
 
       <br/>
 
-      <form id="howMuch">
+      <form id="how-much">
         <h5>How much ya snag?</h5>
         <div id="beer-selection">
-          <div id="howMuchBeerGroup">
+          <div id="how-much-beer-group">
             <input type="radio" id="case" name="howMuchYaSnagGroup" value="case" onchange="onHowMuchRadioChange()">
             <label for="case">Case (24)</label><br>
             <input type="radio" id="sixPack" name="howMuchYaSnagGroup" value="sixPack" onchange="onHowMuchRadioChange()">
@@ -57,14 +57,14 @@
           </div>
         </div>
         <div id="spirits-selection">
-          <div id="howMuchSpiritsGroup">
+          <div id="how-much-spirits-group">
             <input type="radio" id="brandy" name="howMuchYaSnagGroup" value="brandy" onchange="onHowMuchRadioChange()">
             <label for="brandy">Brandy</label><br>
             <input type="radio" id="spirits" name="howMuchYaSnagGroup" value="spirits" onchange="onHowMuchRadioChange()">
             <label for="spirits">Any other spirits</label><br>
           </div>
         </div>
-        <div id="quantityGroup">
+        <div id="quantity-group">
           <label for="quantityInput">Quantity: </label>
           <input type="text" id="quantityInput" name="quantityInput" onfocus="this.value=''" onkeyup="onQuantityChange()" >
         </div>
@@ -72,25 +72,25 @@
 
       <br/>
 
-      <form id="alcoholPercentage" onkeydown="return (event.keyCode!=13);">
+      <form id="alcohol-percentage">
         <h5>How strong's the bastard?</h5>
-        <div id="alcoholPercentageGroup">
-          <input type="text" id="strengthInput" name="strengthInput" value="" onfocus="this.value=''" onkeyup="onStrengthChange()">
+        <div id="alcohol-percentage-group">
+          <input type="text" id="strengthInput" name="strengthInput" value="0" onfocus="this.value=''" onkeyup="onStrengthChange()">
           <label for="strengthInput">%</label><br>
         </div>
       </form>
 
       <br/>
     
-      <form id="volume" onkeydown="return (event.keyCode!=13);">
+      <form id="volume-group">
         <h5>Volume in a single container?</h5>
-        <input type="text" id="volumeInput" name="volumeInput" onfocus="this.value=''" value="0" onchange="onVolumeChange()">
+        <input type="text" id="volumeInput" name="volumeInput" value="0" onfocus="this.value=''" onchange="onVolumeChange()">
         <label for="volumeInput">ml</label><br>
       </form>
 
       <br/>
     
-      <form id="price" onkeydown="return (event.keyCode!=13);">
+      <form id="price-group" >
         <h5>How much did it sting ya for?</h5>
         <label for="priceInput">Total Price ($): </label><br>
         <input type="text" id="priceInput" name="priceInput" onfocus="this.value=''" value="0" onchange="onPriceChange()">
@@ -99,7 +99,7 @@
 
       <br/>
 
-      <div id="results">
+      <div id="results-group">
         <h5>Results</h5>
         <p id="litresStrengthExciseDutyRatePrint"></p>
         <p id="overallStrengthPrint"></p>
