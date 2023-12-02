@@ -10,110 +10,218 @@
   <meta name="keywords" content="Alcohol,Australia,Tax,Booze,Beer,Wine,Spirits,Expensive">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">  <link rel="stylesheet" type="text/css" href="styles.css">
+  <script src="scripts.js"></script>
+
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 </head>
 
 <header>
   <div id="header-content">
     <div id="header-wrapper"></div>
-      <h1>Rip Me A New One</h1>
-      <h4>D'ya know why alcohol is so bloody expensive in Australia? Tax. Forkin' tax. Find out how much of the case/bottle you buy is subject to thanks to the Australian Government.</h4>
     </div>
   </div>
 </header>
 
 <body>
-  <div id="body-content">
-    <div id="body-content-group">
 
-      <button onclick="resetAll()">Reset</button> 
+  <div class="container text-center">
 
-      <br/>
-
-      <form id="what-did-ya-buy">
-        <h5>What did ya buy?</h5>
-        <div id="what-did-ya-buy-group">
-          <input type="radio" id="beerType" name="whatDidYaBuyGroup" value="beer" onchange="onWhatDidYaBuyChange(value)">
-          <label for="beer">Beer</label><br>
-          <input type="radio" id="spiritsType" name="whatDidYaBuyGroup" value="spirits" onchange="onWhatDidYaBuyChange(value)">
-          <label for="spirits">Spirits</label><br>
-        </div>
-      </form>
-
-      <br/>
-
-      <form id="how-much">
-        <h5>How much ya snag?</h5>
-        <div id="beer-selection">
-          <div id="how-much-beer-group">
-            <input type="radio" id="case" name="howMuchYaSnagGroup" value="case" onchange="onHowMuchRadioChange()">
-            <label for="case">Case (24)</label><br>
-            <input type="radio" id="sixPack" name="howMuchYaSnagGroup" value="sixPack" onchange="onHowMuchRadioChange()">
-            <label for="sixPack">Six-pack (6)</label><br>
-            <input type="radio" id="bottleTin" name="howMuchYaSnagGroup" value="bottleTin" onchange="onHowMuchRadioChange()">
-            <label for="bottleTin">Bottle/tin (1)</label><br>
-          </div>
-        </div>
-        <div id="spirits-selection">
-          <div id="how-much-spirits-group">
-            <input type="radio" id="brandy" name="howMuchYaSnagGroup" value="brandy" onchange="onHowMuchRadioChange()">
-            <label for="brandy">Brandy</label><br>
-            <input type="radio" id="spirits" name="howMuchYaSnagGroup" value="spirits" onchange="onHowMuchRadioChange()">
-            <label for="spirits">Any other spirits</label><br>
-          </div>
-        </div>
-        <div id="quantity-group">
-          <label for="quantityInput">Quantity: </label>
-          <input type="text" id="quantityInput" name="quantityInput" onfocus="this.value=''" onkeyup="onQuantityChange()" >
-        </div>
-      </form>
-
-      <br/>
-
-      <form id="alcohol-percentage">
-        <h5>How strong's the bastard?</h5>
-        <div id="alcohol-percentage-group">
-          <input type="text" id="strengthInput" name="strengthInput" value="0" onfocus="this.value=''" onkeyup="onStrengthChange()">
-          <label for="strengthInput">%</label><br>
-        </div>
-      </form>
-
-      <br/>
-    
-      <form id="volume-group">
-        <h5>Volume in a single container?</h5>
-        <input type="text" id="volumeInput" name="volumeInput" value="0" onfocus="this.value=''" onchange="onVolumeChange()">
-        <label for="volumeInput">ml</label><br>
-      </form>
-
-      <br/>
-    
-      <form id="price-group" >
-        <h5>How much did it sting ya for?</h5>
-        <label for="priceInput">Total Price ($): </label><br>
-        <input type="text" id="priceInput" name="priceInput" onfocus="this.value=''" value="0" onchange="onPriceChange()">
-        <input id="calculateBtn" onclick="calculate()" type="button"  value="Calculate!" disabled="true"/>
-      </form>    
-
-      <br/>
-
-      <div id="results-group">
-        <h5>Results</h5>
-        <p id="litresStrengthExciseDutyRatePrint"></p>
-        <p id="overallStrengthPrint"></p>
-        <p id="lalsNotRoundedPrint"></p>
-        <p id="finalLalPrint"></p>
-        <p id="resultPrint"></p>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <br><br>
+        <h1>Rip Me A New One</h1>
+        <h4>D'ya know why alcohol is so bloody expensive in Australia? Tax. Forkin' tax. Find out how much of the case/bottle you buy is subject to thanks to the Australian Government.</h4>
       </div>
+      <div class="col-md-3"></div>
+    </div>
+
+    <div class="row">
+      <div class="col">
+        <button type="submit" onclick="resetAll()" class="btn btn-primary">Reset</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Whadid ya buy? -->
+  <div class="container what-did-you-buy">
+    <br>
+    <div class="row">
+
+      <div class="col-md-2"></div>
+
+      <div class="col-md-4 text-end">
+        <h5>Whadid ya buy?</h5>
+      </div>
+
+      <div class="col-md-4 text-start">
+        <div class="form-check form-check-inline">
+          <input type="radio" id="beerType" name="whatDidYaBuyGroup" value="beer" class="form-check-input" onchange="onWhatDidYaBuyChange(value)">
+          <label for="beerType" class="form-check-label">Beer</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" id="spiritsType" name="whatDidYaBuyGroup" value="spirits" onchange="onWhatDidYaBuyChange(value)">
+          <label class="form-check-label" for="spiritsType" >Spirits</label>
+        </div>
+      </div>
+
+      <div class="col-md-2"></div>
 
     </div>
   </div>
+
+  <!-- How much ya snag? -->
+  <div class="container" id="how-much">
+    <br>
+    <div class="row">
+
+      <div class="col-md-2"></div>
+
+      <div class="col-md-4 text-end">
+        <h5>How much ya snag?</h5>
+      </div>
+
+      <div class="col-md-4 text-start" id="beer-selection">
+        <div id="how-much-beer-group">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="case" name="howMuchYaSnagGroup" value="case" onchange="onHowMuchRadioChange()">
+            <label class="form-check-label" for="case">Case (24)</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="sixPack" name="howMuchYaSnagGroup" value="sixPack" onchange="onHowMuchRadioChange()">
+            <label class="form-check-label" for="sixPack">Six-pack (6)</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="bottleTin" name="howMuchYaSnagGroup" value="bottleTin" onchange="onHowMuchRadioChange()">
+            <label class="form-check-label" for="bottleTin">Bottle/tin (1)</label><br>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 text-start" id="spirits-selection">
+        <div id="how-much-spirits-group"> 
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="brandy" name="howMuchYaSnagGroup" value="brandy" onchange="onHowMuchRadioChange()">
+            <label class="form-check-label" for="brandy">Brandy</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="spirits" name="howMuchYaSnagGroup" value="spirits" onchange="onHowMuchRadioChange()">
+            <label class="form-check-label" for="spirits">Any other spirits</label>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="col-md-2"></div>
+
+    </div>
+  </div>
+  
+  <!-- 
+    <div class="container text-center">
+
+    <form id="how-much">
+      <h5>How much ya snag?</h5>
+      <div id="beer-selection">
+        <div id="how-much-beer-group">
+          <input type="radio" id="case" name="howMuchYaSnagGroup" value="case" onchange="onHowMuchRadioChange()">
+          <label for="case">Case (24)</label><br>
+          <input type="radio" id="sixPack" name="howMuchYaSnagGroup" value="sixPack" onchange="onHowMuchRadioChange()">
+          <label for="sixPack">Six-pack (6)</label><br>
+          <input type="radio" id="bottleTin" name="howMuchYaSnagGroup" value="bottleTin" onchange="onHowMuchRadioChange()">
+          <label for="bottleTin">Bottle/tin (1)</label><br>
+        </div>
+      </div>
+      <div id="spirits-selection">
+        <div id="how-much-spirits-group">
+          <input type="radio" id="brandy" name="howMuchYaSnagGroup" value="brandy" onchange="onHowMuchRadioChange()">
+          <label for="brandy">Brandy</label><br>
+          <input type="radio" id="spirits" name="howMuchYaSnagGroup" value="spirits" onchange="onHowMuchRadioChange()">
+          <label for="spirits">Any other spirits</label><br>
+        </div>
+      </div>
+      <div id="quantity-group">
+        <label for="quantityInput">Quantity: </label>
+        <input type="text" id="quantityInput" name="quantityInput" onfocus="this.value=''" onkeyup="onQuantityChange()" >
+      </div>
+    </form>
+
+  </div>
+
+  <div class="container text-center">
+
+    <form id="how-much">
+      <h5>How much ya snag?</h5>
+      <div id="beer-selection">
+        <div id="how-much-beer-group">
+          <input type="radio" id="case" name="howMuchYaSnagGroup" value="case" onchange="onHowMuchRadioChange()">
+          <label for="case">Case (24)</label><br>
+          <input type="radio" id="sixPack" name="howMuchYaSnagGroup" value="sixPack" onchange="onHowMuchRadioChange()">
+          <label for="sixPack">Six-pack (6)</label><br>
+          <input type="radio" id="bottleTin" name="howMuchYaSnagGroup" value="bottleTin" onchange="onHowMuchRadioChange()">
+          <label for="bottleTin">Bottle/tin (1)</label><br>
+        </div>
+      </div>
+      <div id="spirits-selection">
+        <div id="how-much-spirits-group">
+          <input type="radio" id="brandy" name="howMuchYaSnagGroup" value="brandy" onchange="onHowMuchRadioChange()">
+          <label for="brandy">Brandy</label><br>
+          <input type="radio" id="spirits" name="howMuchYaSnagGroup" value="spirits" onchange="onHowMuchRadioChange()">
+          <label for="spirits">Any other spirits</label><br>
+        </div>
+      </div>
+      <div id="quantity-group">
+        <label for="quantityInput">Quantity: </label>
+        <input type="text" id="quantityInput" name="quantityInput" onfocus="this.value=''" onkeyup="onQuantityChange()" >
+      </div>
+    </form>
+
+  </div>
+
+  <div class="container text-center">
+
+    <form id="alcohol-percentage">
+      <h5>How strong's the bastard?</h5>
+      <div id="alcohol-percentage-group">
+        <input type="text" id="strengthInput" name="strengthInput" value="0" onfocus="this.value=''" onkeyup="onStrengthChange()">
+        <label for="strengthInput">%</label><br>
+      </div>
+    </form>
+
+  </div>
+
+  <div class="container text-center">
+    <form id="volume-group">
+      <h5>Volume in a single container?</h5>
+      <input type="text" id="volumeInput" name="volumeInput" value="0" onfocus="this.value=''" onchange="onVolumeChange()">
+      <label for="volumeInput">ml</label><br>
+    </form>
+  </div>
+
+  <div class="container text-center">
+    <form id="price-group" >
+      <h5>How much did it sting ya for?</h5>
+      <label for="priceInput">Total Price ($): </label><br>
+      <input type="text" id="priceInput" name="priceInput" onfocus="this.value=''" value="0" onchange="onPriceChange()">
+      <input id="calculateBtn" onclick="calculate()" type="button"  value="Calculate!" disabled="true"/>
+    </form>    
+  </div>
+
+  <div class="container text-center">
+    <div id="results-group">
+      <h5>Results</h5>
+      <p id="litresStrengthExciseDutyRatePrint"></p>
+      <p id="overallStrengthPrint"></p>
+      <p id="lalsNotRoundedPrint"></p>
+      <p id="finalLalPrint"></p>
+      <p id="resultPrint"></p>
+    </div>
+  </div> -->
+
 </body>
 
 <footer></footer>
-
-<script src="scripts.js"></script>
 
 </html>

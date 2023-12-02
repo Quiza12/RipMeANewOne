@@ -307,10 +307,10 @@ function resetAll() {
 
 function resetOnWhatGroupChange() {
   resetHowMuchGroup();
-  resetStrengthGroup();
-  resetVolumeGroup();
-  resetPriceGroup();
-  resetResultsGroup();
+  // resetStrengthGroup();
+  // resetVolumeGroup();
+  // resetPriceGroup();
+  // resetResultsGroup();
 }
 
 function resetOnHowMuchGroupChange() {
@@ -335,9 +335,9 @@ function resetHowMuchGroup() {
   document.getElementById("bottleTin").checked = false;
   document.getElementById("brandy").checked = false;
   document.getElementById("spirits").checked = false;
-  document.getElementById(volumeGroup).style.display = 'none';
-  document.getElementById(quantityInput).value = '';
-  document.getElementById(quantityInput).style.border = correctValueBorderHighlight;
+  // document.getElementById(volumeGroup).style.display = 'none';
+  // document.getElementById(quantityInput).value = '';
+  // document.getElementById(quantityInput).style.border = correctValueBorderHighlight;
 }
 
 function resetStrengthGroup() {
