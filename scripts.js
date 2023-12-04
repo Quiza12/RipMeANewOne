@@ -41,22 +41,22 @@ function formValueValid(value) {
 function performFormValidationAndEnableElement(inputId, elementToEnable) {
   var inputValue = document.getElementById(inputId).value;
   if (inputValue === "undefined") {
-    document.getElementById(inputId).style.border = incorrectOrEmptyValueBorderHighlight;
+    document.getElementById(inputId).classList.add("is-invalid");
   } else if (formValueValid(inputValue)) {
-    document.getElementById(inputId).style.border = correctValueBorderHighlight;
+    document.getElementById(inputId).classList.remove("is-invalid");
     document.getElementById(elementToEnable).disabled = false;
   } else {
-    document.getElementById(inputId).style.border = incorrectOrEmptyValueBorderHighlight;
+    document.getElementById(inputId).classList.add("is-invalid");
   }
 }
 
 function performFormValidationAndDisplayNextInput(inputId, nextInputId) {
   var inputValue = document.getElementById(inputId).value;
   if (formValueValid(inputValue)) {
-    document.getElementById(inputId).style.border = correctValueBorderHighlight;
+    document.getElementById(inputId).classList.remove("is-invalid");
     document.getElementById(nextInputId).style.display = 'block';
   } else {
-    document.getElementById(inputId).style.border = incorrectOrEmptyValueBorderHighlight;
+    document.getElementById(inputId).classList.add("is-invalid");
   }
 }
 
@@ -70,19 +70,23 @@ function finalValidationOnCalculation() {
 
   if (quantity === "undefined" || quantity.length == 0 || !formValueValid(quantity)) {
     readyToCalculate = false;
-    document.getElementById(quantityInput).style.border = incorrectOrEmptyValueBorderHighlight;
+    document.getElementById(quantityInput).classList.add("is-invalid");
+    // document.getElementById(quantityInput).style.border = incorrectOrEmptyValueBorderHighlight;
   } 
   if (strength === "undefined" || strength.length == 0 ||!formValueValid(strength)) {
     readyToCalculate = false;
-    document.getElementById(strengthInput).style.border = incorrectOrEmptyValueBorderHighlight;
+    document.getElementById(strengthInput).classList.add("is-invalid");
+    // document.getElementById(strengthInput).style.border = incorrectOrEmptyValueBorderHighlight;
   } 
   if (volume === "undefined" || volume.length == 0 ||!formValueValid(volume)) {
     readyToCalculate = false;
-    document.getElementById(volumeInput).style.border = incorrectOrEmptyValueBorderHighlight;
+    document.getElementById(volumeInput).classList.add("is-invalid");
+    // document.getElementById(volumeInput).style.border = incorrectOrEmptyValueBorderHighlight;
   } 
   if (price === "undefined" || price.length == 0 ||!formValueValid(price)) {
     readyToCalculate = false;
-    document.getElementById(priceInput).style.border = incorrectOrEmptyValueBorderHighlight;
+    document.getElementById(priceInput).classList.add("is-invalid");
+    // document.getElementById(priceInput).style.border = incorrectOrEmptyValueBorderHighlight;
   }
 
   return readyToCalculate;
@@ -307,10 +311,10 @@ function resetAll() {
 
 function resetOnWhatGroupChange() {
   resetHowMuchGroup();
-  // resetStrengthGroup();
-  // resetVolumeGroup();
-  // resetPriceGroup();
-  // resetResultsGroup();
+  resetStrengthGroup();
+  resetVolumeGroup();
+  resetPriceGroup();
+  resetResultsGroup();
 }
 
 function resetOnHowMuchGroupChange() {
@@ -335,27 +339,27 @@ function resetHowMuchGroup() {
   document.getElementById("bottleTin").checked = false;
   document.getElementById("brandy").checked = false;
   document.getElementById("spirits").checked = false;
-  // document.getElementById(volumeGroup).style.display = 'none';
-  // document.getElementById(quantityInput).value = '';
+  document.getElementById(quantityInput).value = '';
   // document.getElementById(quantityInput).style.border = correctValueBorderHighlight;
+  document.getElementById(volumeGroup).style.display = 'none';
 }
 
 function resetStrengthGroup() {
   document.getElementById("alcohol-percentage").style.display = 'none';
   document.getElementById(strengthInput).value = '';
-  document.getElementById(strengthInput).style.border = correctValueBorderHighlight;
+  // document.getElementById(strengthInput).style.border = correctValueBorderHighlight;
 }
 
 function resetVolumeGroup() {
   document.getElementById(volumeGroup).style.display = 'none';
   document.getElementById(volumeInput).value = '';
-  document.getElementById(volumeInput).style.border = correctValueBorderHighlight;
+  // document.getElementById(volumeInput).style.border = correctValueBorderHighlight;
 }
 
 function resetPriceGroup() {
   document.getElementById("price-group").style.display = 'none';
   document.getElementById(priceInput).value = '';
-  document.getElementById(priceInput).style.border = correctValueBorderHighlight;
+  // document.getElementById(priceInput).style.border = correctValueBorderHighlight;
 }
 
 function resetResultsGroup() {

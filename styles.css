@@ -6,7 +6,7 @@
   background-color: #fff;
 }
 
-#how-much {
+#how-much, #alcohol-percentage, #volume-group, #price-group, #results-group {
   display: none;
 }
 
