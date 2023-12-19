@@ -45,6 +45,7 @@
 
   </div>
 
+  
   <!-- Whadid ya buy? -->
   <div class="container what-did-you-buy">
     <br>
@@ -138,15 +139,13 @@
       <div class="col-md-2"></div>
 
       <div class="col-md-4 text-end">
-        <h5>How strong's the bastard?</h5>
+        <h5>How strong's the bastard? (ABV)</h5>
       </div>
 
       <div class="col-md-2 alcohol-percentage-group text-start">
         <div class="input-group">
           <input class="form-control" type="text" id="strengthInput" name="strengthInput" value="0" onfocus="this.value=''" onkeyup="onStrengthChange()">
-          <div class="input-group-append">
-            <span class="input-group-text" id="basic-addon1">%</span>
-          </div>
+          <span class="input-group-text" id="basic-addon1">%</span>
         </div>
       </div>
 
@@ -155,7 +154,7 @@
     </div>
   </div>
 
-  <!-- Volume in a single container? -->
+  <!-- Volume of a single container? -->
   <div class="container" id="volume-group">
     <br>
     <div class="row">
@@ -163,15 +162,13 @@
       <div class="col-md-2"></div>
 
       <div class="col-md-4 text-end">
-        <h5>Volume in a single container?</h5>
+        <h5>Volume of a single container?</h5>
       </div>
 
       <div class="col-md-2 text-start">
         <div class="input-group">
           <input class="form-control" type="text" id="volumeInput" name="volumeInput" value="0" onfocus="this.value=''" onchange="onVolumeChange()">
-          <div class="input-group-append">
-            <span class="input-group-text" id="basic-addon1">ml</span>
-          </div>
+          <span class="input-group-text" id="basic-addon1">ml</span>
         </div>
       </div>
 
@@ -190,9 +187,7 @@
       </div>
       <div class="col-md-2 text-start">
         <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1">$</span>
-          </div>
+          <span class="input-group-text" id="basic-addon1">$</span>
           <input class="form-control" type="text" id="priceInput" name="priceInput" onfocus="this.value=''" value="0" onchange="onPriceChange()">
         </div>      
       </div>

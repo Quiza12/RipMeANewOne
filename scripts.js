@@ -15,17 +15,17 @@ var volumeGroup = "volume-group";
   Total volume (litres) of product × (alcohol strength – 1.15%) × current excise duty rate
 */
 
-var exciseDutyRateBeer11 = 45.07;
-var exciseDutyRateBeer12 = 9.01;
-var exciseDutyRateBeer15 = 52.49;
-var exciseDutyRateBeer16 = 28.23;
-var exciseDutyRateBeer110 = 52.49;
-var exciseDutyRateBeer111 = 36.98;
-var exciseDutyRateBeer115 = 3.17;
-var exciseDutyRateBeer116 = 3.65;
+var exciseDutyRateBeer11 = 50.72;
+var exciseDutyRateBeer12 = 10.14;
+var exciseDutyRateBeer15 = 59.06;
+var exciseDutyRateBeer16 = 31.76;
+var exciseDutyRateBeer110 = 59.06;
+var exciseDutyRateBeer111 = 41.62;
+var exciseDutyRateBeer115 = 3.57;
+var exciseDutyRateBeer116 = 4.11;
 
-var exciseDutyRateBrandy = 83.04;
-var exciseDutyRateSpirits= 88.91;
+var exciseDutyRateBrandy31 = 93.44;
+var exciseDutyRateSpirits32= 100.05;
 
 var incorrectOrEmptyValueBorderHighlight = "1px solid red";
 var correctValueBorderHighlight = "1px solid black";
@@ -110,7 +110,7 @@ function onWhatDidYaBuyChange(alcohol) {
 // 2. How much ya snag?
 
 function onQuantityChange() {
-  if (!document.getElementById(quantityInput).value == "") {
+  if (!document.getElementById(quantityInput).value == "" && (document.querySelector('input[name=howMuchYaSnagGroup]:checked') != null)) {
     performFormValidationAndDisplayNextInput(quantityInput, "alcohol-percentage");
   }
 }
@@ -236,17 +236,17 @@ function spiritsCalculator(type, quantityString, strengthString, volumeString, p
 
   var totalLitres = quantity * (volumePerUnit / 1000);
 
-  //3.1 - From 2 Aug 2021 - $ per litre of alcohol - $83.04
+  //3.1 - From 1 Aug 2023 - $ per litre of alcohol - $83.04
   if (type == "brandy") {
     tax = calculatePrice(totalLitres, strength, exciseDutyRateBrandy);
   } else {
 
-    //2 - From 2 Aug 2021 - $ per litre of alcohol - $88.91
+    //2 - From 1 Aug 2023 - $ per litre of alcohol - $88.91
     if (strength <= 10) {
       tax = calculatePrice(totalLitres, strength, exciseDutyRateSpirits);
     }
 
-    //3.2 - From 2 Aug 2021 - $ per litre of alcohol - $88.91
+    //3.2 - From 1 Aug 2023 - $ per litre of alcohol - $88.91
     if (strength > 10) {
       tax = calculatePrice(totalLitres, strength, exciseDutyRateSpirits);
     }

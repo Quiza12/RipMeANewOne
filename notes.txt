@@ -2,7 +2,7 @@ To test locally without CORS issues:
 
 Run from root directory: live-server
 
-https://www.ato.gov.au/business/excise-on-alcohol/lodging,-paying-and-rates---excisable-alcohol/excise-duty-rates-for-alcohol/
+https://www.legacy.ato.gov.au/Business/Excise-on-alcohol/Excise-duty-rates-for-alcohol/
 
 Total volume (litres) of product × (alcohol strength – 1.15%) × current excise duty rate
 
